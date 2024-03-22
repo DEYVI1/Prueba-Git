@@ -5,21 +5,21 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contactos.db'
 db = SQLAlchemy(app)
 
-class contacto(db.Model):
+class Contacto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     mensaje = db.Column(db.Text, nullable=False)
 
-@app.route('/')
+@app.route('/version1')
 def index():
-    return render_template('index.html')
+    return render_template('/version1/index.html')
 
-@app.route('/productos')
+@app.route('/version1/productos')
 def productos():
-    return render_template('productos.html')
+    return render_template('/version1/productos.html')
 
-@app.route('/contacto', methods=['GET', 'POST'])
+@app.route('/version1/contacto.html', methods=['GET', 'POST'])
 def contacto():
     if request.method == 'POST':
         nombre = request.form['nombre']
@@ -30,8 +30,7 @@ def contacto():
         db.session.add(nuevo_contacto)
         db.session.commit()
         return '¡Gracias! Nos pondremos en contacto contigo pronto.'
-    return render_template('contacto.html')
+    return render_template('version 1/contacto.html')
 
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True)
