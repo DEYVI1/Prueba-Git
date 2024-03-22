@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request
+#from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contactos.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contactos.db'
 db = SQLAlchemy(app)
 
 class Contacto(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+ #   id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     mensaje = db.Column(db.Text, nullable=False)
